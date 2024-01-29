@@ -1,0 +1,31 @@
+name: CI/CD for react App
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+   contents: write
+
+jobs:
+  build_and_deploy
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@3
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: 18
+
+      - name: install dependencies
+        run: npm install
+
+      - name: Deploy to Github Pages
+        uses: JamesIves/github-pages-deploy-action@4.1.0
+        with:
+          branch: gh-pages
+          folder: build
