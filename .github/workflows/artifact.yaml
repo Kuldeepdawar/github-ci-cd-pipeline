@@ -1,6 +1,8 @@
 name: Artifact
 
-on: [main]
+on:
+  push:
+    branches: [main]
 
 env:
   ARTIFACT_NAME: myartifact
